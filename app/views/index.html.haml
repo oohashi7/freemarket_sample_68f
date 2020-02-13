@@ -1,0 +1,35 @@
+.aside
+  .aside__inner
+    .aside__inner__title
+    
+    %p.aside__inner__text
+      .aside__inner__icon
+        = link_to edit_user_registration_path do
+       %span.image
+       = link_to src="https://linkmaker.itunes.apple.com/assets/shared/badges/ja-jp/appstore-lrg.svg" , "https://itunes.apple.com/jp/app/%E3%81%91%E3%82%82%E3%81%AE%E3%83%95%E3%83%AC%E3%83%B3%E3%82%BA%E3%81%82%E3%82%89%E3%83%BC%E3%82%80/id1268624173?mt=8" do 
+      %end%
+       %span.image
+        = link_to src="google-play-badge.png","https://play.google.com/store/apps/dev?id=5700313618786177705" do
+      %end%
+
+.footer
+  %ul.footer__contents
+    %li.footer__contents__content
+      %h2.footer__contents__content__head
+       = link_to "会社概要", edit_group_path(@group) 
+       = link_to "プライバシーポリシー", edit_group_path(@group) 
+       = link_to "FURIMA利用規約", edit_group_path(@group) 
+       = link_to "ポイントに関する特約", edit_group_path(@group) 
+    %li.footer__contents__content
+      %h2.footer__contents__content__head
+       = link_to "カテゴリー一覧", edit_group_path(@group) 
+       = link_to "ブランド一覧", edit_group_path(@group) 
+    %li.footer__contents__content
+       %h2.footer__contents__content__head
+       = link_to "FURIMAガイド", edit_group_path(@group) 
+       = link_to "FURIMAロゴ利用ガイドライン", edit_group_path(@group) 
+        = link_to "お知らせ", edit_group_path(@group) 
+    = image_tag src="logo.png"
+    %p.© FURIMA
+
+        
