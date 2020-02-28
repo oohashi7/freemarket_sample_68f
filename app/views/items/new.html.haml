@@ -26,10 +26,11 @@
                     %pre.label-box__text-visible クリックしてファイルをアップロード
                     .hidden-content
                       = f.fields_for :images do |i|
-                        = i.file_field :image_url, class: "hidden-field"
-                        = i.check_box:_destroy, class: "hidden-checkbox"
-                      - @item.images.length.upto(4) do |i|
-                        %input{name: "item[images_attributes][#{i}][image_url]", id: "item_images_attributes_#{i}_image_url", class:"hidden-field", type:"file"}
+                        = i.file_field :image, class: "hidden-field"
+                        %input{class:"hidden-field", type: "file", name: "item[images_attributes][1][image_url]", id: "item_images_attributes_1_image_url" }
+                        %input{class:"hidden-field", type: "file", name: "item[images_attributes][2][image_url]", id: "item_images_attributes_2_image_url" }
+                        %input{class:"hidden-field", type: "file", name: "item[images_attributes][3][image_url]", id: "item_images_attributes_3_image_url" }
+                        %input{class:"hidden-field", type: "file", name: "item[images_attributes][4][image_url]", id: "item_images_attributes_4_image_url" }
           .exhibit__main__itemProfile__inputForm__sellGoods
             .exhibit__main__itemProfile__inputForm__sellGoods__name
               .notation
