@@ -41,7 +41,7 @@ html{
           border-top: 1px solid #eee;
 
           &__upload{
-            width: 620px;
+            // width: 620px;
             padding: 40px;
 
             &__head{
@@ -124,18 +124,15 @@ html{
                     pointer-events: none;
                     white-space: pre-wrap;
                     word-wrap: break-word;
-                    .hidden-content {
-                      .hidden-field {
-                        display: none;
-                      }
-                      .hidden-checkbox {
-                        display: none;
-                      }
-                    }
+                  }
+                  .hidden-field {
+                    // display: none;
+                  }
+                  .hidden-checkbox {
+                    display: none;
                   }
                 }
               }
-            
             }
           }
         }
@@ -338,8 +335,6 @@ html{
               border-top: 1px solid #ccc;
               display: flex;
               justify-content: space-between;
-              &__title{
-              }
             }
             &__profit{
               padding: 24px 0;
