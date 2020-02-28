@@ -22,20 +22,14 @@
               .exhibit__main__itemProfile__inputForm__sellImage__upload__image10
                 .prev-content
                 .label-content
-
-                  = f.label :"images_attributes_#{@item.images.length}_image", class: "label-box", id: "label-box--#{@item.images.length}" do
-                    
+                  = f.label :"images_attributes_#{@item.images.length}_image_url", class: "label-box", id: "label-box--#{@item.images.length}" do
                     %pre.label-box__text-visible クリックしてファイルをアップロード
-                .hidden-content
-                  = f.fields_for :images do |i|
-
-                    = i.file_field :image_url, class: "hidden-field"
-                    = i.check_box:_destroy, class: "hidden-checkbox"
-
-                  - @item.images.length.upto(4) do |i|
-                    %input{name: "item[images_attributes][#{i}][image_url]", id: "item_images_attributes_#{i}_image", class:"hidden-field", type:"file"}
-
-                
+                    .hidden-content
+                      = f.fields_for :images do |i|
+                        = i.file_field :image_url, class: "hidden-field"
+                        = i.check_box:_destroy, class: "hidden-checkbox"
+                      - @item.images.length.upto(4) do |i|
+                        %input{name: "item[images_attributes][#{i}][image_url]", id: "item_images_attributes_#{i}_image_url", class:"hidden-field", type:"file"}
           .exhibit__main__itemProfile__inputForm__sellGoods
             .exhibit__main__itemProfile__inputForm__sellGoods__name
               .notation

@@ -58,7 +58,6 @@ html{
               display: block;
               margin: 16px auto 0;
               display: flex;
-              flex-wrap: wrap;
 
               .prev-content {
                 display: flex;
@@ -125,18 +124,18 @@ html{
                     pointer-events: none;
                     white-space: pre-wrap;
                     word-wrap: break-word;
+                    .hidden-content {
+                      .hidden-field {
+                        display: none;
+                      }
+                      .hidden-checkbox {
+                        display: none;
+                      }
+                    }
                   }
                 }
               }
             
-              .hidden-content {
-                .hidden-field {
-                  // display: none;
-                }
-                .hidden-checkbox {
-                  display: none;
-                }
-              }
             }
           }
         }
@@ -255,9 +254,7 @@ html{
               &__select{
                 font-weight: bold;
                 display: flex;
-              }
-
-                            
+              }              
               select{
                 width: 100%;
                 margin: 8px 0 0;
@@ -349,12 +346,6 @@ html{
               border-top: 1px solid #ccc;
               display: flex;
               justify-content: space-between;
-              &__title{
-              }
-              &__count{
-
-              }
-            
             }
           }
         }
