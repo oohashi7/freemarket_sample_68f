@@ -52,13 +52,13 @@
             .exhibit__main__itemProfile__inputForm__sellDetails__title
               商品の詳細
             .exhibit__main__itemProfile__inputForm__sellDetails__formBox  
-              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__category
-                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__category__select
-                  .notation
-                    カテゴリー
-                  .formRequire
-                    必須
-                = f.collection_select :category_id, @parents, :id, :name,{prompt: "---"}, class: "exhibitInput", id: "parent-form", name: 'item[category_id]'
+              .listing-form-box
+                .listing-product-detail__category
+                  = f.label 'カテゴリー', class: '.notation'
+                  %span.formRequire 必須
+                  .listing-select-wrapper
+                    .listing-select-wrapper__box
+                      = f.select :category_id, @category_parent_array,{},{class:'listing-select-wrapper__box--select',id:'parent_category',name:""}
               .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
                 .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
                   .notation

@@ -4,6 +4,7 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
   belongs_to :user
   belongs_to :category
+  belongs_to :size
   has_one :order
   extend ActiveHash::Associations::ActiveRecordExtensions
     belongs_to_active_hash :condition
@@ -21,7 +22,6 @@ class Item < ApplicationRecord
   # belongs_to :delivery_charge
   # belongs_to :delivery_date
   # belongs_to :order_status
-  # belongs_to :size
 
   validates :name,:price,:description,:deriver_charge,:deriver_date,:category_id,:condition_id,:prefecture_id, presence: true
 

@@ -183,11 +183,24 @@ html{
             width: 400px;
             margin: 0;
 
-            &__category{
+            .listing-form-box{
 
-              &__select{
-                font-weight: bold;
-                display: flex;
+              .listing-product-detail__category{
+                .listing-select-wrapper{
+                  .listing-select-wrapper__box{
+                    select{
+                      width: 100%;
+                      margin: 8px 0 0;
+                      height: 48px;
+                      padding: 10px 16px 8px;
+                      border-radius: 4px;
+                      border: 1px solid #ccc;
+                      background: $white;
+                      line-height: 1.5;
+                      font-size: 16px; 
+                    }
+                  }
+                }
 
 
               }
