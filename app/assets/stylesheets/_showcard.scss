@@ -1,10 +1,40 @@
+.paymethod{
+  text-align: center;
+  background-color:whitesmoke;
+  width: 100%;
+  padding-top: 10%;
+  
+  &_word {
+    margin: auto;
+    font-weight: bold;
+    line-height: 20px;
+    background-color: white;
+    width: 50%;
 
-label2 {
-  color: blue;
-  border: solid 1px blue;
-  line-height: 30px;  
-}
-button {
-  color: red;
-  border: solid 1px red;  
+    &_point {
+      margin: 10px;
+      
+    }
+
+    .information {
+      border-top: solid 1px;
+      
+      label2 {
+        color: #3ccace;
+        border: solid 1px #3ccace;
+        line-height: 30px;  
+       
+      }
+      button {
+        color: red;
+        border: solid 1px red;  
+        
+      }
+
+      .home {
+        font-size: 30px;
+        
+      }
+    }
+  }
 }
