@@ -1,6 +1,4 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -8,16 +6,8 @@ class User < ApplicationRecord
   has_many :cards
   has_one :street_address 
   accepts_nested_attributes_for :street_address,allow_destroy: true
-
-  # has_many   :orders
-  # has_many   :profits
-  # has_many   :points
   has_many   :messages
-  # has_many   :likes
-  # has_many   :message_items,through::messages,source::item
-  # has_many   :like_items,through::likes,source::item
-  # has_many   :flag_items,through::flags,source::item
-  # belongs_to :rate
+
   validates  :nickname,:birth_year,:birth_month,:birth_day,presence: true
    # メールの正規表現
   # validates :email, presence: true, length: { maximum: 255 },uniqueness: true

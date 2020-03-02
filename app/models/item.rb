@@ -12,16 +12,6 @@ class Item < ApplicationRecord
     belongs_to_active_hash :prefecture
     belongs_to_active_hash :deriver_date
     belongs_to_active_hash :soldout_or_exhibiting
-  # has_many :likes
-  # has_many :message_users,through::messages,source::user
-  # has_many :like_users,through::likes,source::user
-  # belongs_to :profit
-  # belongs_to :prefecture
-  # belongs_to :brand
-  # belongs_to :condition
-  # belongs_to :delivery_charge
-  # belongs_to :delivery_date
-  # belongs_to :order_status
 
   validates :name,:price,:description,:deriver_charge,:deriver_date,:category_id,:condition_id,:prefecture_id, presence: true
 
