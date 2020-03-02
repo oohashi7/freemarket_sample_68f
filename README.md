@@ -21,109 +21,31 @@
 ### Association
 - has_many :items, dependent: :destroy
 - has_many :orders, dependent: :destroy
-- has_many :profits, dependent: :destroy
-- has_many :points, dependent: :destroy
 - has_many :messages, dependent: :destroy
-- has_many :likes, dependent: :destroy
-- has_many :addresses, dependent: :destroy
-- has_many :message_items,through::messages,source::item, dependent: :destroy
-- has_many :like_items,through::likes,source::item, dependent: :destroy
-- belongs_to :rate
+- has_many :street_address, dependent: :destroy
+- has_many :cards
 
 
-## addressテーブル
+## street_addressテーブル
 |Column|Type|Options|
 |------|----|-------|
 |id|integer||
-|prefecture|reference|foreign_key: true|
+|first_name|string|null:false|
+|first_name_kana|string|null:false|
+|last_name|string|null:false|
+|last_name_kana|string|null:false|
 |city|string|null:false|
 |address|string|null:false|
 |building|string||
 |zip_code|integer|null:false|
+|telephone|integer||
+|prefecture|reference|foreign_key: true|
+|user_id|reference|null:false,foreign_key:ture|
+
 
 ### Association
 - has_many :items, dependent: :destroy
 - has_many :orders, dependent: :destroy
-- belongs_to :user
-
-
-## ratesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|id|||
-|rating|string||
-
-### Association
-- has_many :items, dependent: :destroy
-- has_many :users, dependent: :destroy
-
-
-## rate_countsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|id|||
-|rating_id|reference|foreign_key: true|
-|user_id|reference|foreign_key: true|
-|order_id|reference|foreign_key: true|
-|message|text||
-
-
-### Association
-- has_many :users, dependent: :destroy
-- has_many :orders, dependent: :destroy
-
-
-## pointsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|id|||
-|amount|integer||
-
-
-### Association
-- belongs_to :user
-
-
-## profitsテーブル
-|Column|Type|Options|
-|------|----|-------|
-|id|||
-|profit|integer||
-|user_id|reference|foreign_key: true|
-|item_id|reference|foreign_key: true|
-|trade_end_date|daytime||
-
-### Association
-- belongs_to :item
-- belongs_to :user
-
-
-## messagesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|id|||
-|message|text||
-|user_id|reference|foreign_key: true|
-|item_id|reference|foreign_key: true|
-|order_status_id|reference|foreign_key: true|
-
-
-### Association
-- belongs_to :item
-- belongs_to :user
-- belongs_to :order_status
-
-
-## likesテーブル
-|Column|Type|Options|
-|------|----|-------|
-|id|||
-|user_id|reference|foreign_key: true|
-|item_id|reference|foreign_key: true|
-
-
-### Association
-- belongs_to :item
 - belongs_to :user
 
 
@@ -134,42 +56,46 @@
 |user_id|reference|null:false,foreign_key:ture|
 |name|string|null:false|
 |price|integer|null:false|
+|brand|string||
 |description|text|null:false|
+|delivery_charge_id|integer|null:false|
+|condition_id|integer|null:false|
+|prefecture_id|integer|null:false|
+|delivery_dates_id|integer|null:false|
+|soldout_or_exhibiting_id|integer|default: 1|
 |category_id|reference|foreign_key:true|
-|brand_id|reference|foreign_key:true|
-|size_id|reference|foreign_key:true|
-|condition_id|reference|foreign_key:true|
-|delivery_charge_id|reference|foreign_key:true|
-|address_id|reference|foreign_key:true|
-|delivery_dates_id|reference|foreign_key:true|
-|order_status_id|reference|foreign_key:true|
 |order_id|reference|foreign_key:true|
 
 
 ### Association
-- has_many :item_images, dependent: :destroy
-- has_many :messages, dependent: :destroy
-- has_many :likes, dependent: :destroy
+- has_many :images, dependent: :destroy
+- accepts_nested_attributes_for :images, allow_destroy: true- has_many :messages, dependent: :destroy
 - has_many :message_users,through::messages,source::user, dependent: :destroy
 - has_many :like_users,through::likes,source::user, dependent: :destroy
-- has_one :profit
 - has_one :order
-- belongs_to :address
 - belongs_to :user
-- belongs_to :brand
-- belongs_to :condition
-- belongs_to :delivery_charge
-- belongs_to :delivery_date
-- belongs_to :order_status
-- belongs_to :size
 - belongs_to :category
 
 
-## item_imageテーブル
+## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
 |id|||
-|image|text|null:false|
+|message|text||
+|user_id|reference|foreign_key: true|
+|item_id|reference|foreign_key: true|
+
+
+### Association
+- belongs_to :item
+- belongs_to :user
+
+
+## imageテーブル
+|Column|Type|Options|
+|------|----|-------|
+|id|bigint||
+|image_url|string|null:false|
 |item_id|reference|null:false,foreign_key:true|
 
 
@@ -181,8 +107,8 @@
 |Column|Type|Options|
 |------|----|-------|
 |id|integer||
-|user_id|reference|null:false,foreign_key:ture|(buyer)
-|item_id|reference|null:false,foreign_key:ture|
+|user_id|integer||
+|item_id|integer||
 |item.user_id|reference|null:false,foreign_key:ture|(seller)
 
 

@@ -8,7 +8,6 @@ class ItemsController < ApplicationController
   def new
     @item = Item.new
     @item.images.new
-    @parents = Category.where(ancestry: nil)
     @category_parent_array = ["---"]
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
@@ -32,8 +31,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    @parents = Category.where(ancestry: nil)
-    @category_parent_array = ["---"]
+    @category_parent_array = [@item.category.name]
     Category.where(ancestry: nil).each do |parent|
       @category_parent_array << parent.name
     end

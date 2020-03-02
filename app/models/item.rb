@@ -4,7 +4,6 @@ class Item < ApplicationRecord
   accepts_nested_attributes_for :images, allow_destroy: true
   belongs_to :user
   belongs_to :category
-  belongs_to :size
   has_one :order
   extend ActiveHash::Associations::ActiveRecordExtensions
     belongs_to_active_hash :condition
