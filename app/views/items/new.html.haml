@@ -3,11 +3,11 @@
     .exhibit__header
       =link_to root_path , class: "exhibit__header__logo" do
         =image_tag asset_path("logo.png"),class: "exhibit__header__logo__image"
-
     .exhibit__main
       .exhibit__main__itemProfile
         .exhibit__main__itemProfile__inputForm
         = form_with(model: @item, local: true) do |f|
+          = render 'layouts/error_messages', model: f.object
           .exhibit__main__itemProfile__inputForm__top
             商品の情報を入力      
           .exhibit__main__itemProfile__inputForm__sellImage
@@ -26,7 +26,7 @@
                     %pre.label-box__text-visible クリックしてファイルをアップロード
                     .hidden-content
                       = f.fields_for :images do |i|
-                        = i.file_field :image, class: "hidden-field"
+                        = i.file_field :image_url, class: "hidden-field"
                         %input{class:"hidden-field", type: "file", name: "item[images_attributes][1][image_url]", id: "item_images_attributes_1_image_url" }
                         %input{class:"hidden-field", type: "file", name: "item[images_attributes][2][image_url]", id: "item_images_attributes_2_image_url" }
                         %input{class:"hidden-field", type: "file", name: "item[images_attributes][3][image_url]", id: "item_images_attributes_3_image_url" }
@@ -38,7 +38,6 @@
               .formRequire
                 必須
             = f.text_field :name, class: "exhibitInput", placeholder: "商品名（必須40文字まで）"
-
             .exhibit__main__itemProfile__inputForm__sellGoods__description
               .notation
                 商品の説明
@@ -47,7 +46,6 @@
             = f.text_area :description, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
             .exhibit__main__itemProfile__inputForm__sellGoods__wordCount
               0/1000
-
           .exhibit__main__itemProfile__inputForm__sellDetails
             .exhibit__main__itemProfile__inputForm__sellDetails__title
               商品の詳細
@@ -73,7 +71,6 @@
                   .formRequire
                     必須
                 =f.collection_select :condition_id, Condition.all, :id, :name, prompt: "--"
-
           .exhibit__main__itemProfile__inputForm__delivery
             .exhibit__main__itemProfile__inputForm__delivery__leftBox
               .exhibit__main__itemProfile__inputForm__delivery__leftBox__title
@@ -102,7 +99,6 @@
                   .formRequire
                     必須
                 = f.collection_select :deriver_date_id, DeriverDate.all, :id, :name, prompt: "--"
-
           .exhibit__main__itemProfile__inputForm__sellPrice
             .exhibit__main__itemProfile__inputForm__sellPrice__leftBox
               .exhibit__main__itemProfile__inputForm__sellPrice__leftBox__title
@@ -127,7 +123,6 @@
                   販売利益
                 .exhibit__main__itemProfile__inputForm__sellPrice__calculation__profit__count
                   %p -
-
           .exhibit__main__itemProfile__inputForm__warning
             .exhibit__main__itemProfile__inputForm__warning_links
               %span.exhibit__main__itemProfile__inputForm__warning__links__link
@@ -153,8 +148,6 @@
             = f.submit :出品する ,class: "exhibitSubmit1"
             =link_to new_item_path , class: "exhibitSubmit2" do
               もどる
-
-
     .exhibit__footer
       .exhibit__footer__lists
         =link_to "#", class: "exhibit__footer__lists__list" do

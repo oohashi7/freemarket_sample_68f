@@ -16,10 +16,10 @@ class ItemsController < ApplicationController
   end
 
   def create
-     @item = Item.new(item_params)
-     if @item.save
+    @item = Item.new(item_params)
+    if @item.save
       redirect_to root_path
-     else
+    else
       render "new"
     end
   end
@@ -29,16 +29,19 @@ class ItemsController < ApplicationController
     @order = Order.new
     @message = Message.new
     @messages = @item.messages.order(id: "ASC").includes(:user)
-    # @users = User.find(params[:id]) 
   end
 
   def edit
     @parents = Category.where(ancestry: nil)
+    @category_parent_array = ["---"]
+    Category.where(ancestry: nil).each do |parent|
+      @category_parent_array << parent.name
+    end
   end
 
   def update
     @parents = Category.where(ancestry: nil)
-   if @item.update(item_update_params)
+   if @item.update(item_params)
       redirect_to root_path
     else 
       render "edit"
@@ -65,11 +68,7 @@ class ItemsController < ApplicationController
 
   private
   def item_params
-    params.require(:item).permit(:name,:price,:description,:brand,:category_id,:condition_id,:deriver_charge_id,:prefecture_id,:deriver_date_id,[images_attributes: [:image_url]]).merge(user_id:current_user.id).merge(category_id: params[:category_id])
-  end
-
-  def item_update_params
-    params.require(:item).permit(:name,:price,:description,:brand,:category_id,:condition_id,:deriver_charge_id,:prefecture_id,:deriver_date_id,[images_attributes: [:image_url, :_destroy, :id]]).merge(user_id:current_user.id)
+    params.require(:item).permit(:name,:price,:description,:brand,:category_id,:condition_id,:deriver_charge_id,:prefecture_id,:deriver_date_id,[images_attributes: [:image_url, :_destroy, :id]]).merge(user_id:current_user.id).merge(category_id: params[:category_id])
   end
 
 end

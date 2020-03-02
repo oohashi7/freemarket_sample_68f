@@ -109,7 +109,7 @@ $(document).on('turbolinks:load', function () {
       //削除用チェックボックスの有無で判定
       if ($(`#item_images_attributes_${id}__destroy`).length == 0) {
         //フォームの中身を削除 
-        $(`#item_images_attributes_${id}_image`).val("");
+        $(`#item_images_attributes_${id}_image_url`).val("");
         var count = $('.preview-box').length;
         //5個めが消されたらラベルを表示
         if (count == 4) {
@@ -117,7 +117,7 @@ $(document).on('turbolinks:load', function () {
         }
         setLabel(count);
         if (id < 5) {
-          $('.label-box').attr({ id: `label-box--${id}`, for: `item_images_attributes_${id}_image` });
+          $('.label-box').attr({ id: `label-box--${id}`, for: `item_images_attributes_${id}_image_url` });
 
         }
       } else {
@@ -134,7 +134,7 @@ $(document).on('turbolinks:load', function () {
         //ラベルのidとforの値を変更
         //削除したプレビューのidによって、ラベルのidを変更する
         if (id < 5) {
-          $('.label-box').attr({ id: `label-box--${id}`, for: `item_images_attributes_${id}_image` });
+          $('.label-box').attr({ id: `label-box--${id}`, for: `item_images_attributes_${id}_image_url` });
         }
       }
       //=============================================================================

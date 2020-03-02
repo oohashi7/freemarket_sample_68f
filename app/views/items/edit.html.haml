@@ -56,18 +56,17 @@
             = f.text_area :description, class: "exhibitTextarea", placeholder: "商品の説明（必須1,000文字以内）（色、重さ、素材、定価、注意点など）例）2010年頃に1万円で購入したジャケットです。ライトグレーで傷はありません。合わせやすいのでおすすめです。"
             .exhibit__main__itemProfile__inputForm__sellGoods__wordCount
               0/1000
-
           .exhibit__main__itemProfile__inputForm__sellDetails
             .exhibit__main__itemProfile__inputForm__sellDetails__title
               商品の詳細
             .exhibit__main__itemProfile__inputForm__sellDetails__formBox  
-              .exhibit__main__itemProfile__inputForm__sellDetails__formBox__category
-                .exhibit__main__itemProfile__inputForm__sellDetails__formBox__category__select
-                  .notation
-                    カテゴリー
-                  .formRequire
-                    必須
-                = f.collection_select :category_id, @parents, :id, :name,{prompt: "---"}, class: "select-default", id: "parent-form", name: 'item[category_id]'
+              .listing-form-box
+                .listing-product-detail__category
+                  = f.label 'カテゴリー', class: '.notation'
+                  %span.formRequire 必須
+                  .listing-select-wrapper
+                    .listing-select-wrapper__box
+                      = f.select :category_id, @category_parent_array,{},{class:'listing-select-wrapper__box--select',id:'parent_category',name:""}
               .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand
                 .exhibit__main__itemProfile__inputForm__sellDetails__formBox__brand__write
                   .notation
@@ -81,8 +80,7 @@
                     商品の状態
                   .formRequire
                     必須
-                =f.text_field :condition, class: "exhibitInput", placeholder: "例）未使用、新品に近い、目立った汚れ無し"
-
+                =f.collection_select :condition_id, Condition.all, :id, :name, prompt: "--"
           .exhibit__main__itemProfile__inputForm__delivery
             .exhibit__main__itemProfile__inputForm__delivery__leftBox
               .exhibit__main__itemProfile__inputForm__delivery__leftBox__title
@@ -96,21 +94,21 @@
                     配送料の負担
                   .formRequire
                     必須
-                =f.text_field :deriver_charge,class: "exhibitInput", placeholder: "例）送料込み（出品者負担）、着払い（購入者負担）"
+                = f.collection_select :deriver_charge_id, DeriverCharge.all, :id, :name, prompt: "--"
               .exhibit__main__itemProfile__inputForm__delivery__formBox__area
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__area__select
                   .notation
                     配送元の地域
                   .formRequire
                     必須
-                =f.text_field :area, class: "exhibitInput", placeholder: "例）東京、大阪、京都、愛知、北海道、福岡"
+                = f.collection_select :prefecture_id, Prefecture.all, :id, :name, prompt: "--"
               .exhibit__main__itemProfile__inputForm__delivery__formBox__days
                 .exhibit__main__itemProfile__inputForm__delivery__formBox__days__select
                   .notation
                     配送までの日数
                   .formRequire
                     必須
-                =f.text_field :deriver_date, class: "exhibitInput", placeholder: "例）1〜2日以内に発送、4〜7日以内に発送"
+                = f.collection_select :deriver_date_id, DeriverDate.all, :id, :name, prompt: "--"
           .exhibit__main__itemProfile__inputForm__sellPrice
             .exhibit__main__itemProfile__inputForm__sellPrice__leftBox
               .exhibit__main__itemProfile__inputForm__sellPrice__leftBox__title
@@ -135,7 +133,6 @@
                   販売利益
                 .exhibit__main__itemProfile__inputForm__sellPrice__calculation__profit__count
                   %p -
-
           .exhibit__main__itemProfile__inputForm__warning
             .exhibit__main__itemProfile__inputForm__warning_links
               %span.exhibit__main__itemProfile__inputForm__warning__links__link
@@ -160,7 +157,6 @@
           = f.submit :変更する ,class: "exhibitSubmit1"
           =link_to item_path ,class: "exhibitCancel" do
             キャンセル
-
         .exhibit__footer
           .exhibit__footer__lists
             =link_to "#", class: "exhibit__footer__lists__list" do

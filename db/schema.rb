@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2020_02_26_115740) do
+ActiveRecord::Schema.define(version: 2020_02_28_052140) do
 
   create_table "cards", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "user_id"
@@ -57,9 +56,8 @@ ActiveRecord::Schema.define(version: 2020_02_26_115740) do
     t.integer "soldout_or_exhibiting_id", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
     t.integer "category_id"
-
+    t.bigint "user_id"
     t.bigint "order_id"
     t.index ["order_id"], name: "index_items_on_order_id"
     t.index ["user_id"], name: "index_items_on_user_id"

@@ -5,16 +5,16 @@
       FURIMA
       = icon('fas', 'angle-right') 
     = link_to "#" , class: "line2__box__first" do
-      ベビー・キッズ
+      = @category.name
       = icon('fa', 'angle-right')
     = link_to "#" , class: "line2__box__first" do
-      ベビー服（男女兼用）
+      -# = @category_children.name
       = icon('fa', 'angle-right')
     = link_to "#" , class: "line2__box__first" do
-      アウター
+      -# = @category_grandchildren.name
       = icon('fa', 'angle-right')
     = link_to "#" , class: "line2__box__final" do
-      product3
+      = @item.name
 .top
   = render partial: 'deta_edit', locals: { item: @items, order: @orders }
 
